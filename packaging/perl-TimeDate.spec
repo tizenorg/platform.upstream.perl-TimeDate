@@ -9,6 +9,7 @@ License:        GPL+ or Artistic
 Url:            http://search.cpan.org/dist/TimeDate/
 Group:          Development/Libraries
 Source0:        http://www.cpan.org/authors/id/G/GB/GBARR/TimeDate-%{version}.tar.gz
+Source1001: 	perl-TimeDate.manifest
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
 BuildRequires:  perl(ExtUtils::MakeMaker)
@@ -24,6 +25,7 @@ textual representations of points in time.
 
 %prep
 %setup -q -n TimeDate-%{version}
+cp %{SOURCE1001} .
 
 %build
 perl Makefile.PL INSTALLDIRS=vendor
@@ -40,6 +42,7 @@ find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null ';'
 
 
 %files
+%manifest %{name}.manifest
 %defattr(-,root,root,-)
 %{perl_vendorlib}/Date/*
 %{perl_vendorlib}/Time/*
